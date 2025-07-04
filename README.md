@@ -29,7 +29,13 @@ A stylish web application that displays NASA's **Astronomy Picture of the Day (A
 
 ---
 
-## 📝 License
+## 📄 Image Content License Notice
 
-This project is licensed under the **MIT License**.  
-NASA APOD content is publicly available. However, some images may be copyrighted by individual contributors. Please refer to NASA's [image use policy](https://www.nasa.gov/multimedia/guidelines/index.html) for detailed guidelines.
+This application displays imagery and content provided by NASA's Astronomy Picture of the Day (APOD) API.
+
+- NASA images are generally in the public domain.
+- Some images may be copyrighted by external photographers or organizations.
+- Please refer to NASA’s [Image Use Policy](https://www.nasa.gov/multimedia/guidelines/index.html) for details.
+- This project does not claim ownership of any NASA-provided images or videos.
+
+If you redistribute or use APOD images, **you are responsible for complying with any applicable copyright restrictions.**
