@@ -8,17 +8,30 @@
         Astronomy Picture of the Day
     </title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <h2>NASA APOD Viewer</h2>
-        <nav>
+
+        <!-- Hamburger Button -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false"
+            aria-controls="nav-links">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Dropdown Nav -->
+        <nav id="nav-links">
             <a href="/">Home</a>
             <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">NASA APOD</a>
         </nav>
     </header>
+
+
+
 
     <main>
         <div class="content">
@@ -63,6 +76,17 @@
                         <% } %>
         </p>
     </footer>
+    <script>
+        const toggleBtn = document.getElementById("menu-toggle");
+        const nav = document.getElementById("nav-links");
+
+        toggleBtn.addEventListener("click", () => {
+            nav.classList.toggle("show");
+            const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
+            toggleBtn.setAttribute("aria-expanded", !expanded);
+        });
+    </script>
+
 
 </body>
 
