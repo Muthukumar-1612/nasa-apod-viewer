@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Astronomy Picture of the Day
+    </title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h2>NASA APOD Viewer</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">NASA APOD</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content">
+            <h1>
+                <%= data.title %>
+            </h1>
+            <div class="date">
+                <%= data.date %>
+            </div>
+
+            <% if (data.mediaType==="image" ) { %>
+                <img src="<%= data.imageUrl %>" alt="Astronomy Picture of the Day" />
+                <% } else if (data.mediaType==="video" ) { %>
+                    <a href="<%= data.videoUrl %>" target="_blank">
+                        <img src="<%= data.imageUrl %>" alt="Video Thumbnail" />
+                    </a>
+                    <p style="text-align: center;">
+                        <a class="video-link" href="<%= data.videoUrl %>" target="_blank">Watch Video</a>
+                    </p>
+                    <% } %>
+
+                        <p>
+                            <%= data.explanation %>
+                        </p>
+        </div>
+
+        <form action="/" method="POST">
+            <input type="number" name="year" placeholder="Year" min="1995" max="<%= new Date().getFullYear() %>"
+                required>
+            <input type="number" name="month" placeholder="Month" min="1" max="12" required>
+            <input type="number" name="day" placeholder="Day" min="1" max="31" required>
+            <button type="submit">Search by Date</button>
+        </form>
+    </main>
+
+    <footer>
+        <p style="text-align:center; font-size:0.9rem; color:#aaa;">
+            <% if (data.copyright) { %>
+                &copy; <%= data.copyright %>
+                    <% } else { %>
+                        Image courtesy of NASA (public domain)
+                        <% } %>
+        </p>
+    </footer>
+
+</body>
+
+</html>
