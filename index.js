@@ -3,6 +3,7 @@ import axios from "axios";
 
 const port = 3000;
 const app = express();
+const API_KEY = process.env.API_KEY || "DEMO_KEY";
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -13,7 +14,7 @@ app.get("/", async (req, res) => {
     try {
         const response = await axios.get("https://api.nasa.gov/planetary/apod", {
             params: {
-                api_key: "DEMO_KEY",
+                api_key: API_KEY,
                 thumbs: true
             }
         });
