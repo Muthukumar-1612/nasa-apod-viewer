@@ -1,9 +1,11 @@
 import express from "express";
 import axios from "axios";
+import env from "dotenv";
+env.config();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
-const API_KEY = process.env.API_KEY || "DEMO_KEY";
+const API_KEY = process.env.API_KEY;
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -28,7 +30,7 @@ app.get("/", async (req, res) => {
             imageUrl = data.thumbnail_url;
         }
 
-        res.render("index.ejs", {
+        res.render("index", {
             data: {
                 title: data.title,
                 date: data.date,
@@ -53,7 +55,7 @@ app.post("/", async (req, res) => {
     try {
         const response = await axios.get("https://api.nasa.gov/planetary/apod", {
             params: {
-                api_key: "DEMO_KEY",
+                api_key: API_KEY,
                 date: date,
                 thumbs: true
             }
@@ -68,7 +70,7 @@ app.post("/", async (req, res) => {
             imageUrl = data.thumbnail_url;
         }
 
-        res.render("index.ejs", {
+        res.render("index", {
             data: {
                 title: data.title,
                 date: data.date,
