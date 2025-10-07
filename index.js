@@ -6,6 +6,8 @@ env.config();
 const port = process.env.PORT || 3000;
 const app = express();
 const API_KEY = process.env.API_KEY;
+console.log("API_KEY:", API_KEY);
+
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -42,7 +44,11 @@ app.get("/", async (req, res) => {
             }
         });
     } catch (error) {
-        console.error(error);
+        if (error.response) {
+            console.error("NASA API error:", error.response.status, error.response.data);
+        } else {
+            console.error("Error:", error.message);
+        }
         res.send("Error fetching APOD data.");
     }
 });
@@ -82,9 +88,18 @@ app.post("/", async (req, res) => {
             }
         });
     } catch (error) {
-        console.error(error);
+        if (error.response) {
+            console.error("NASA API error:", error.response.status, error.response.data);
+        } else {
+            console.error("Error:", error.message);
+        }
         res.send("Error fetching APOD data.");
     }
+});
+
+// health check route
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
 });
 
 app.listen(port, () => {
